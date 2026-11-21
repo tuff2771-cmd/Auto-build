@@ -7,6 +7,10 @@
 using namespace geode::prelude;
 
 class $modify(AutoDecoPlayLayer, PlayLayer) {
+    struct Fields {
+        DecoLayer* deco = nullptr;
+    };
+
     void setupHasCompleted() {
         PlayLayer::setupHasCompleted();
 
@@ -36,9 +40,12 @@ class $modify(AutoDecoPlayLayer, PlayLayer) {
             ccp(0, -1)
         );
         bgParent->addChild(grad, bgZ);
-        bgParent->addChild(DecoLayer::create(style, animate), bgZ);
 
-        // 2) Ground colors (if this errors on build, delete these 4 lines)
+        auto deco = DecoLayer::create(style, animate);
+        m_fields->deco = deco;
+        bgParent->addChild(deco, bgZ);
+
+        // 2) Ground colors (if this errors on build, delete these 2 lines)
         if (m_groundLayer) m_groundLayer->updateGround01Color(style.ground1);
         if (m_groundLayer) m_groundLayer->updateGround02Color(style.ground2);
 
@@ -66,5 +73,12 @@ class $modify(AutoDecoPlayLayer, PlayLayer) {
         auto overlay = CCLayerColor::create(ccc4(mix(style.tint.r), mix(style.tint.g), mix(style.tint.b), 255), win.width, win.height);
         overlay->setBlendFunc({ GL_DST_COLOR, GL_ZERO });
         this->addChild(overlay, 1000);
+    }
+
+    void postUpdate(float dt) {
+        PlayLayer::postUpdate(dt);
+        if (m_fields->deco && m_player1) {
+            m_fields->deco->setIntense(m_player1->m_isDart);
+        }
     }
 };
