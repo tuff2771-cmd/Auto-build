@@ -1,0 +1,64 @@
+{
+  "geode": "5.11.2",
+  "gd": {
+    "win": "2.2081",
+    "android": "2.2081",
+    "ios": "2.2081"
+  },
+  "version": "v1.0.0",
+  "id": "helloworld1246.autodeco",
+  "name": "helloworld1246's autodeco",
+  "developer": "helloworld1246",
+  "description": "Auto-decorates every level (objects and background) with 10 styles.",
+  "tags": ["customization", "enhancement"],
+  "settings": {
+    "enabled": {
+      "name": "Enabled",
+      "type": "bool",
+      "default": true
+    },
+    "style": {
+      "name": "Style",
+      "type": "string",
+      "default": "Neon",
+      "one-of": ["Neon", "Nine Circles", "Slaughterhouse", "Grief", "Galaxy", "Tech", "Hell", "Null", "Diamond", "Amethyst"]
+    },
+    "tint-strength": {
+      "name": "Color Tint Strength",
+      "description": "How strongly the style colors the whole screen.",
+      "type": "float",
+      "default": 0.6,
+      "min": 0.0,
+      "max": 1.0,
+      "control": { "slider": true }
+    },
+    "bg-opacity": {
+      "name": "Background Opacity",
+      "type": "float",
+      "default": 0.85,
+      "min": 0.0,
+      "max": 1.0,
+      "control": { "slider": true }
+    },
+    "decor-density": {
+      "name": "Object Decor Density",
+      "description": "Decorate every Nth object (1 = all).",
+      "type": "int",
+      "default": 3,
+      "min": 1,
+      "max": 30
+    },
+    "max-object-decos": {
+      "name": "Max Object Decorations",
+      "type": "int",
+      "default": 1500,
+      "min": 0,
+      "max": 10000
+    },
+    "animate": {
+      "name": "Animate Background",
+      "type": "bool",
+      "default": true
+    }
+  }
+}
